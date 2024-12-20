@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+    <link rel="icon" href="{% static 'myapp/images/favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+    <h1>Blog Posts</h1>
+    <a href="{% url 'add_post' %}">Add New Blog Post</a>
+    <hr>
+        {% for post in posts %}
+        <div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <small>Published on: {{ post.created_at }}</small>
+        </div>
+    <hr>
+    {% endfor %}
+</body>
+</html>
