@@ -24,3 +24,15 @@ def add_post(req):
 
     return render(req, 'myapp/add_post.html', {'form': form})
 
+def add_post_with_image(req):
+    if req.method == 'POST':
+        form = BlogPostForm(req.POST, req.FILES)  # Include req.FILES to handle file uploads
+        if form.is_valid():
+            form.save()
+            return redirect('posts')
+        else:
+            print(form.errors)  # Debugging: Print errors to the console
+    else:
+        form = BlogPostForm()
+
+    return render(req, 'myapp/add_post.html', {'form': form})
